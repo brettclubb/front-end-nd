@@ -1,5 +1,9 @@
+// Counters used to calculate game play and score
 let movesCounter = 0;
-let starsCounter = 0; 
+let starsCounter = 0;
+let matchCounter = 0;
+
+// DOM elements that hold buttons and display values
 const movesContainer = document.querySelector('.moves');
 const starsContainer = document.querySelector('.stars');
 const restartContainer = document.querySelector('.restart');
@@ -30,7 +34,7 @@ restartGame();
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-function restartGame(){
+function restartGame() {
     movesCounter = 0;
     refreshMoveCounter();
 
@@ -39,7 +43,7 @@ function restartGame(){
 
     const tempDiv = document.createElement('div');
 
-    for(let card of shuffledDeck){
+    for (let card of shuffledDeck) {
         const listItem = document.createElement('li');
         listItem.className = "card";
 
@@ -82,53 +86,76 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
- function cardClick(event){
-    if(event.target.classList.contains('card'))
-        showCard(event.target);
- }
+function cardClick(event) {
+    const card = event.target;
+    if (isClickableCard(card))
+        showCard(card);
+}
 
- function showCard(card){
+function isClickableCard(card) {
+    const classList = card.classList;
+    if (classList.contains('card') && !classList.contains('match') && openedCards.length < 2) {
+        return true;
+    }
+    return false;
+}
+
+function showCard(card) {
     card.className = "card open show";
     addCardToOpenList(card);
-    //addCardToOpenList(card);
- }
+}
 
- function matchCards(){
-    for(let card of openedCards){
+function matchCards() {
+    matchCounter++;
+    for (let card of openedCards) {
         card.className = "card match";
     }
-    openedCards = [];
- }
+    clearOpenedCards();
 
- function noMatches(){
-    for(let card of openedCards){
+    if(matchCounter > 7)
+        gameWon();
+}
+
+function noMatches() {
+    for (let card of openedCards) {
         card.className = "card";
     }
+    clearOpenedCards();
+}
+
+function clearOpenedCards(){
     openedCards = [];
- }
+}
 
- function gameWon(){
+function gameWon() {
     alert("FINAL SCORE \n" + "Moves: " + movesCounter);
- }
+}
 
- function incrementMoveCounter(){
+function incrementMoveCounter() {
     movesCounter++;
     refreshMoveCounter();
- }
+}
 
- function refreshMoveCounter(){
+function refreshMoveCounter() {
     movesContainer.innerHTML = movesCounter;
- }
+}
 
- function addCardToOpenList(card){
-     const cardName = card.querySelector('.fa');
-     openedCards.push(card);
-     if(openedCards.length > 1){
-         if(openedCards[0].querySelector('.fa').className === openedCards[1].querySelector('.fa').className){
-             matchCards();
-         } else{
-             setTimeout(function() { noMatches(); }, 1000);
-         }
-         incrementMoveCounter();
-     }
- }
+function addCardToOpenList(card) {
+    openedCards.push(card);
+    if (openedCards.length > 1) {
+        if (openedCards[0] == card) {
+            noMatches();
+        }
+        else if (getClassName(openedCards[0]) === getClassName(openedCards[1])) {
+            matchCards();
+        } else {
+            // wait before flipping so player can observe
+            setTimeout(function () { noMatches(); }, 1000);
+        }
+        incrementMoveCounter();
+    }
+}
+
+function getClassName(card){
+    return card.querySelector('.fa').className;
+}
