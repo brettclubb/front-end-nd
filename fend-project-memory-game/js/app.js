@@ -2,8 +2,10 @@
 let movesCounter = 0;
 let starsCounter = 0;
 let matchCounter = 0;
+let timer = 0;
 
 // DOM elements that hold buttons and display values
+const timeContainer = document.querySelector('.timer');
 const movesContainer = document.querySelector('.moves');
 const starsContainer = document.querySelector('.stars');
 const restartContainer = document.querySelector('.restart');
@@ -27,6 +29,12 @@ let openedCards = [];
 
 // Initial game load
 restartGame();
+var timerTick; 
+
+function tick(){
+    timer++;
+    refreshTimer();
+}
 
 /*
  * Display the cards on the page
@@ -35,8 +43,7 @@ restartGame();
  *   - add each card's HTML to the page
  */
 function restartGame() {
-    movesCounter = 0;
-    refreshMoveCounter();
+    resetCounters();
 
     const shuffledDeck = shuffle(deckOfCards);
     const cardContainer = document.querySelector('.deck');
@@ -58,6 +65,40 @@ function restartGame() {
     cardContainer.innerHTML = tempDiv.innerHTML;
 }
 
+function resetCounters(){
+    movesCounter = 0;
+    matchCounter = 0;
+    timer = 0;
+    starsCounter = 3;
+    timerTick = setInterval(tick, 1000);
+    refreshMoveCounter();
+    refreshTimer();
+    refreshStarCounter();
+}
+
+function refreshMoveCounter() {
+    movesContainer.innerHTML = movesCounter;
+}
+
+function refreshTimer() {
+    timeContainer.innerHTML = timer + "s";
+}
+
+function refreshStarCounter() {
+    let i = starsCounter;
+    const tempDiv = document.createElement('div');
+    for(i; i > 0; i--){
+        const listItem = document.createElement('li');
+        listItem.className = "card";
+
+        const iconElement = document.createElement('i');
+        iconElement.className = "fa fa-star";
+
+        listItem.appendChild(iconElement);
+        tempDiv.appendChild(listItem);
+    }
+    starsContainer.innerHTML = tempDiv.innerHTML;
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -94,7 +135,7 @@ function cardClick(event) {
 
 function isClickableCard(card) {
     const classList = card.classList;
-    if (classList.contains('card') && !classList.contains('match') && openedCards.length < 2) {
+    if (classList.contains('card') && !classList.contains('match') && openedCards.length < 2 && openedCards[0] != card) {
         return true;
     }
     return false;
@@ -128,16 +169,19 @@ function clearOpenedCards(){
 }
 
 function gameWon() {
+    clearInterval(timerTick);
     alert("FINAL SCORE \n" + "Moves: " + movesCounter);
 }
 
 function incrementMoveCounter() {
     movesCounter++;
     refreshMoveCounter();
-}
 
-function refreshMoveCounter() {
-    movesContainer.innerHTML = movesCounter;
+    // decrease stars if moves > 20, 25, 30
+    if(movesCounter == 21 || movesCounter == 26 || movesCounter == 31){
+        starsCounter--;
+        refreshStarCounter();
+    }
 }
 
 function addCardToOpenList(card) {
