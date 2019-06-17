@@ -11,6 +11,8 @@ const starsContainer = document.querySelector('.stars');
 const restartContainer = document.querySelector('.restart');
 restartContainer.addEventListener('click', restartGame);
 
+const winModal = document.querySelector('.win-modal');
+
 /*
  * Create a list that holds all of your cards
  */
@@ -74,6 +76,7 @@ function resetCounters(){
     refreshMoveCounter();
     refreshTimer();
     refreshStarCounter();
+    winModal.style.display = "none";
 }
 
 function refreshMoveCounter() {
@@ -170,7 +173,10 @@ function clearOpenedCards(){
 
 function gameWon() {
     clearInterval(timerTick);
-    alert("FINAL SCORE \n" + "Moves: " + movesCounter);
+    document.querySelector('.move-score').innerHTML = movesCounter;
+    document.querySelector('.time-score').innerHTML = timer;
+    document.querySelector('.star-score').innerHTML = starsCounter;
+    winModal.style.display = "flex";
 }
 
 function incrementMoveCounter() {
