@@ -12,6 +12,8 @@ const restartContainer = document.querySelector('.restart');
 restartContainer.addEventListener('click', restartGame);
 
 const winModal = document.querySelector('.win-modal');
+const restartModal = document.querySelector('.restart-modal');
+restartModal.addEventListener('click', restartGame);
 
 /*
  * Create a list that holds all of your cards
@@ -183,8 +185,7 @@ function incrementMoveCounter() {
     movesCounter++;
     refreshMoveCounter();
 
-    // decrease stars if moves > 20, 25, 30
-    if(movesCounter == 21 || movesCounter == 26 || movesCounter == 31){
+    if(movesCounter == 16 || movesCounter == 21){
         starsCounter--;
         refreshStarCounter();
     }
@@ -193,10 +194,7 @@ function incrementMoveCounter() {
 function addCardToOpenList(card) {
     openedCards.push(card);
     if (openedCards.length > 1) {
-        if (openedCards[0] == card) {
-            noMatches();
-        }
-        else if (getClassName(openedCards[0]) === getClassName(openedCards[1])) {
+        if (getClassName(openedCards[0]) === getClassName(openedCards[1])) {
             matchCards();
         } else {
             // wait before flipping so player can observe

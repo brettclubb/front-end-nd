@@ -2,19 +2,19 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+* [Game](#game)
+* [Dependencies](#dependencies)
 
-## Instructions
+## Game
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+The goal of the game is to pair together all of the matching cards.
 
-To get started, open `js/app.js` and start building out the app's functionality
+To get started, click a card to turn it over.  Once shown, select another card you think could be a match. Showing a pair of cards is considered one move.
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+If the cards match, they will change color and stay on the screen.  If not, the cards will flip back over, remaining in the same position.
 
-## Contributing
+Continue attempting to match the cards until all matches are found.
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+## Dependencies
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+There are no external dependencies for this project. Simply open the index.html file in a browser to begin game play.

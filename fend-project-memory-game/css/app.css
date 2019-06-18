@@ -115,6 +115,11 @@ h1 {
     cursor: pointer;
 }
 
+.restart-modal {
+    font-size: 30px;
+    cursor: pointer;
+}
+
 .win-modal {
     display: none;
     flex-direction: column;
