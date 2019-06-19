@@ -18,16 +18,8 @@ restartModal.addEventListener('click', restartGame);
 /*
  * Create a list that holds all of your cards
  */
-let deckOfCards = [
-    'diamond', 'diamond',
-    'paper-plane-o', 'paper-plane-o',
-    'anchor', 'anchor',
-    'bolt', 'bolt',
-    'cube', 'cube',
-    'leaf', 'leaf',
-    'bicycle', 'bicycle',
-    'bomb', 'bomb'
-];
+let icons = ['diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube', 'leaf', 'bicycle', 'bomb'];
+let deckOfCards = icons.concat(icons);
 
 let openedCards = [];
 
@@ -78,6 +70,7 @@ function resetCounters(){
     refreshMoveCounter();
     refreshTimer();
     refreshStarCounter();
+    openedCards = [];
     winModal.style.display = "none";
 }
 
@@ -194,13 +187,13 @@ function incrementMoveCounter() {
 function addCardToOpenList(card) {
     openedCards.push(card);
     if (openedCards.length > 1) {
+        incrementMoveCounter();
         if (getClassName(openedCards[0]) === getClassName(openedCards[1])) {
             matchCards();
         } else {
             // wait before flipping so player can observe
             setTimeout(function () { noMatches(); }, 1000);
         }
-        incrementMoveCounter();
     }
 }
 
