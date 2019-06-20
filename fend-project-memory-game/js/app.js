@@ -62,6 +62,7 @@ function restartGame() {
 }
 
 function resetCounters(){
+    clearInterval(timerTick);
     movesCounter = 0;
     matchCounter = 0;
     timer = 0;
