@@ -17,4 +17,11 @@ Continue attempting to match the cards until all matches are found.
 
 ## Dependencies
 
-There are no external dependencies for this project. Simply open the index.html file in a browser to begin game play.
+* [Font Awesome]("https://fontawesome.com/")
+* [Google Fonts]("https://fonts.google.com/")
+
+Font Awesome is a font library used to display the icons on the cards within the game.  
+
+Google Fonts is used for styling the text within the game.
+
+Both libraries are loaded from a CDN and therefore require an internet connection on initial load to display the game properly.
