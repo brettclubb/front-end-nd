@@ -1,0 +1,17 @@
+{
+  "name": "lesson2",
+  "version": "1.0.0",
+  "description": "test web tooling automation setup",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "brett clubb",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
