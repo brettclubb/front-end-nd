@@ -15,10 +15,19 @@ var Enemy = function (x, y) {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y;
+
+    // Determine row and column by position
     this.row = Math.ceil(y/tileHeight);
     this.col = Math.ceil(x/tileWidth);
+
     this.speed = (Math.random() + 1) * 150;
 };
+
+
+Enemy.prototype.reset = function() {
+    this.x = -tileWidth;
+    this.speed = (Math.random() + 1) * 150;
+}
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -30,11 +39,10 @@ Enemy.prototype.update = function (dt) {
         this.x = this.x + (this.speed * dt);
     }
     else {
-        this.x = -tileWidth;
-        this.speed = (Math.random() + 1) * 150;
+        this.reset();
     }
 
-    // Update current column and floor
+    // Update current column and row
     this.row = Math.ceil(this.y/tileHeight);
     this.col = Math.ceil(this.x/tileWidth);
 };
@@ -59,14 +67,7 @@ var Player = function () {
 
 
 Player.prototype.update = function (dt) {
-    var playerCol = this.col;
-    var playerRow = this.row;
-    //console.log(`col: ${playerCol}, row: ${playerRow}`);
-    for(var enemy in allEnemies) {
-        if(playerCol == enemy.col && playerRow == enemy.row) {
-            console.log("YOU GOT HIT IDIOT");
-        }
-    }
+  
 }
 
 Player.prototype.render = function () {
