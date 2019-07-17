@@ -34,7 +34,7 @@ $(function () {
         it('has defined non-empty url', function () {
             for (const feed of allFeeds) {
                 expect(feed.url).toBeDefined();
-                expect(feed.url).not.toBe('');
+                expect(feed.url.length).not.toBe(0);
             }
         });
 
@@ -46,7 +46,7 @@ $(function () {
         it('has defined non-empty name', function () {
             for (const feed of allFeeds) {
                 expect(feed.name).toBeDefined();
-                expect(feed.name).not.toBe('');
+                expect(feed.name.length).not.toBe(0);
             }
         });
     });
@@ -99,12 +99,21 @@ $(function () {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        let feed1, feed2;
+
         beforeEach(function(done) {
-            loadFeed(0, done);
+            loadFeed(0, function(){
+                feed1 = $('.feed').html();
+            });
+            
+            loadFeed(1, function() {
+                feed2 = $('.feed').html();
+                done();
+            });
         });
 
         it('loads new feed', function() {
-            
+            expect(feed2).not.toBe(feed1);
         });
     });
 }());
