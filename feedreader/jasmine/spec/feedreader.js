@@ -1,5 +1,5 @@
 $(function () {
-    /*-----RSS FEEDS-----*/
+    /*----- RSS FEEDS -----*/
     describe('RSS Feeds', function () {
 
         // Check for at least one feed
@@ -28,7 +28,7 @@ $(function () {
     });
 
 
-    /*-----THE MENU-----*/
+    /*----- THE MENU -----*/
     describe('The Menu', function () {
 
         // Check that the menu is hidden
@@ -46,7 +46,7 @@ $(function () {
         });
     });
 
-    /*-----INITIAL ENTRIES-----*/
+    /*----- INITIAL ENTRIES -----*/
     describe('Initial Entries', function () {
 
         // Asynchronously load a feed
@@ -60,7 +60,7 @@ $(function () {
         });
     });
 
-    /*-----NEW FEED SELECTION-----*/
+    /*----- NEW FEED SELECTION -----*/
     describe('New Feed Selection', function () {
 
         let feed1, feed2;
