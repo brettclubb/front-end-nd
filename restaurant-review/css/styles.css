@@ -1,10 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-/*
- * CSS Grid Reference - https://www.w3schools.com/Css/css_rwd_grid.asp
- */
-
 [class*="col-"] {
   display: inline-block;
   padding: 15px;
@@ -14,15 +10,49 @@
   box-sizing: border-box;
 }
 
+/* ====================== MEDIA QUERIES ====================== */
+
 /* XS Device */
 @media only screen and (max-width: 400px) {
   #map {
     height: 300px !important;
   }
+
+  .inside #map-container {
+    position: relative!important;
+    top: 130px!important;
+    padding: 0px!important;
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 600px) {
+  .col-sm-1 {width: 8.33%;}
+  .col-sm-2 {width: 16.66%;}
+  .col-sm-3 {width: 25%;}
+  .col-sm-4 {width: 33.33%;}
+  .col-sm-5 {width: 41.66%;}
+  .col-sm-6 {width: 50%;}
+  .col-sm-7 {width: 58.33%;}
+  .col-sm-8 {width: 66.66%;}
+  .col-sm-9 {width: 75%;}
+  .col-sm-10 {width: 83.33%;}
+  .col-sm-11 {width: 91.66%;}
+  .col-sm-12 {width: 100%;}
+
+  #map {
+    height: 400px !important;
+  }
+
+  .inside #map-container {
+    position: relative!important;
+    top: 130px!important;
+    padding: 0px!important;
+  }
 }
 
 /* Tablets */
-@media only screen and (min-width: 600px) and (max-width: 768px) {
+@media only screen and (min-width: 601px) and (max-width: 768px) {
   .col-md-1 {width: 8.33%;}
   .col-md-2 {width: 16.66%;}
   .col-md-3 {width: 25%;}
@@ -35,6 +65,13 @@
   .col-md-10 {width: 83.33%;}
   .col-md-11 {width: 91.66%;}
   .col-md-12 {width: 100%;}
+
+  .inside #map-container {
+    position: relative!important;
+    height: 400px!important;
+    top: 130px!important;
+    padding: 0px!important;
+  }
 }
 
 /* Desktop */
@@ -51,6 +88,10 @@
   .col-lg-10 {width: 83.33%;}
   .col-lg-11 {width: 91.66%;}
   .col-lg-12 {width: 100%;}
+
+  .inside #map-container {
+    height: 100%;
+  }
 }
 
 /* XL Displays */
@@ -67,6 +108,10 @@
   .col-xl-10 {width: 83.33%;}
   .col-xl-11 {width: 91.66%;}
   .col-xl-12 {width: 100%;}
+
+  .inside #map-container {
+    height: 100%;
+  }
 }
 
 .row::after {
@@ -268,18 +313,20 @@ nav h1 a {
 }
 .inside #map-container {
   background: blue none repeat scroll 0 0;
-  height: 87%;
   position: fixed;
   right: 0;
   top: 80px;
+  padding: 0px!important;
 }
 .inside #map {
   background-color: #ccc;
   width: 100%;
+  height: 100%;
 }
 .inside #footer {
   bottom: 0;
   position: absolute;
+  width: 100%;
 }
 #restaurant-name {
   color: #f18200;
@@ -314,7 +361,6 @@ nav h1 a {
   border-bottom: 1px solid #d9d9d9;
   border-top: 1px solid #fff;
   padding: 140px 40px 30px;
-  width: 50%;
 }
 #reviews-container {
   padding: 30px 40px 80px;
@@ -337,12 +383,28 @@ nav h1 a {
   list-style-type: none;
   margin: 0 0 30px;
   overflow: hidden;
-  padding: 0 20px 20px;
+  padding: 20px;
   position: relative;
   width: 85%;
 }
+#reviews-list li h3 {
+  margin: 0 0 10px;
+  float: left;
+}
 #reviews-list li p {
   margin: 0 0 10px;
+}
+#reviews-list li p:nth-child(2) {
+  float: right;
+}
+#reviews-list li p:nth-child(3) {
+  clear: both;
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  width: 70px;
+  padding: 5px;
+  border-radius: 3px;
 }
 #restaurant-hours td {
   color: #666;
