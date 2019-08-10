@@ -1,12 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-/*
- * CSS Grid Reference - https://www.w3schools.com/Css/css_rwd_grid.asp
- */
-
 [class*="col-"] {
-  display: inline-block;
   padding: 15px;
 }
 
