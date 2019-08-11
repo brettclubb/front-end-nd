@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,15 +11,15 @@
 </head>
 
 <body>
-  <header>
+  <header style="z-index: 999">
     <nav>
       <h1><a href="/" tabindex="-1">Restaurant Reviews</a></h1>
     </nav>
   </header>
 
   <main id="maincontent">
-    <section id="map-container" tabindex="-1" >
-      <div id="map" tabindex="-1" aria-label="Map of Restaurants"></div>
+    <section id="map-container" style="z-index: 800" tabindex="-1" >
+      <div id="map" tabindex="-1" role="application" aria-label="Map of Restaurants"></div>
     </section>
     <section>
       <div class="filter-options" aria-label="Filter Options">

@@ -13,7 +13,7 @@
 
 <body class="inside">
   <!-- Beginning header -->
-  <header>
+  <header style="z-index: 999">
     <!-- Beginning nav -->
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
@@ -30,8 +30,8 @@
   <!-- Beginning main -->
   <main id="maincontent" class="row">
     <!-- Beginning map -->
-    <section id="map-container" class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-      <div id="map" aria-label="Restaurant Map"></div>
+    <section id="map-container" style="z-index: 100" class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+      <div id="map" role="application" aria-label="Restaurant Map"></div>
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->
@@ -52,7 +52,7 @@
   <!-- End main -->
 
   <!-- Beginning footer -->
-  <footer id="footer">
+  <footer id="footer" style="z-index: 999">
     Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
   <!-- End footer -->
